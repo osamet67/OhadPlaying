@@ -1,0 +1,22 @@
+{% if log_list%}
+    <p>Welcome to the console controlling log types</p>
+    <table border="1">
+    {% for logline in log_list %}
+	<tr>
+	<td> <a href = "/tools/console/action=up&logline={{ logline.logtext }}">up</a> </td>
+        <td> <a href = "/tools/console/action=down&logline={{ logline.logtext }}">down</a> </td>
+        <td> <input type="text" name="{{ logline.logtext }}" value="{{ logline.logtext }}"/></td> 
+	<td> <a href = "/tools/console/action=delete&logline={{ logline.logtext }}">delete</a> </td> 
+	</tr>
+    {% endfor %}	
+    </table>
+    <br>
+    <form action="/tools/console/" method="post">{% csrf_token %}
+        {{ form.as_table }} 
+    <input type="submit" value="Add new line" />
+    </form>
+
+{% else %}
+    <p>No log options exist.</p>
+{% endif %}
+

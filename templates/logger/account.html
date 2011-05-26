@@ -1,0 +1,11 @@
+{% if log_list and account_id and agent_id%}
+    <p>Agent {{ agent_id }} working on account {{ account_id }}</p>
+    <ul>
+    {% for logline in log_list %}
+        <li><a href="/tools/log/account_id={{ account_id }}&log_text={{ logline.logtext }}&agent={{ agent_id }}">{{ logline.logtext }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No log options exist.</p>
+{% endif %}
+
